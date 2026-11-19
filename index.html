@@ -214,6 +214,16 @@ footer b{color:var(--gold)}
   .hero figure{order:-1}
   section{padding:44px 0}
 }
+
+.price{color:#e8c352;font-weight:700;min-height:1.2em;margin:4px 0}
+.order-form{display:grid;gap:14px;max-width:520px;margin:0 auto}
+.order-form label{color:#e8c352;font-size:14px;display:grid;gap:6px}
+.order-form input,.order-form select{background:#141311;color:#f3ead2;border:1px solid rgba(232,195,82,.28);border-radius:8px;padding:12px;font-size:16px;width:100%;box-sizing:border-box}
+.order-form .btn{justify-content:center}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.order-done{color:#8be0ab;text-align:center;font-weight:700;margin-top:14px}
+.order-note{text-align:center;margin-top:10px;opacity:.85}
+.order-note a{color:#e8c352}
 </style>
 </head>
 <body>
@@ -260,6 +270,7 @@ footer b{color:var(--gold)}
           <div class="jar">🍯</div>
           <h3>عبوة صغيرة</h3>
           <div class="weight">250 جرام</div>
+          <div class="price" data-size="250"></div>
           <p>مثالية للتجربة والاستخدام اليومي - بنفس جودة العسل الأصلي وتغليف قلوري هاني الفاخر.</p>
           <a class="btn btn-outline" href="https://wa.me/249912179720?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%B9%D8%B3%D9%84%20%D9%82%D9%84%D9%88%D8%B1%D9%8A%20%D9%87%D8%A7%D9%86%D9%8A" target="_blank" rel="noopener">اسأل عن السعر</a>
         </article>
@@ -267,10 +278,44 @@ footer b{color:var(--gold)}
           <div class="jar">🍯</div>
           <h3>عبوة عائلية</h3>
           <div class="weight">1 كيلو جرام</div>
+          <div class="price" data-size="1"></div>
           <p>العبوة الأكبر للبيت والمناسبات - عسل نحل أصلي بختم وتغليف يحمي الجودة لحد ما يوصلك.</p>
           <a class="btn btn-outline" href="https://wa.me/249912179720?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%B9%D8%B3%D9%84%20%D9%82%D9%84%D9%88%D8%B1%D9%8A%20%D9%87%D8%A7%D9%86%D9%8A" target="_blank" rel="noopener">اسأل عن السعر</a>
         </article>
       </div>
+    </div>
+  </section>
+
+
+  <section id="order-form">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="kicker">ORDER ONLINE</div>
+        <h2>اطلب من الموقع مباشرة</h2>
+        <div class="divider"></div>
+      </div>
+      <form id="orderForm" class="order-form" method="POST" action="https://script.google.com/macros/s/AKfycbwQR2WbRL_tXoRYC8gYxjoapOw1xPeVB0Lagnwk_rFcNfaoEMpV9jmFcnXAJjJzl6mg/exec?action=order" target="orderFrame">
+        <label>المنتج
+          <select name="product" id="orderProduct" required>
+            <option value="عسل قلوري هاني 250 جرام">عسل قلوري هاني - 250 جرام</option>
+            <option value="عسل قلوري هاني 1 كيلو جرام">عسل قلوري هاني - 1 كيلو جرام</option>
+          </select>
+        </label>
+        <label>الكمية
+          <input type="number" name="qty" min="1" value="1" required>
+        </label>
+        <label>الاسم
+          <input type="text" name="name" maxlength="100" required>
+        </label>
+        <label>رقم الهاتف (واتساب)
+          <input type="tel" name="phone" maxlength="20" required>
+        </label>
+        <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off">
+        <button type="submit" class="btn">أرسل الطلب</button>
+      </form>
+      <iframe name="orderFrame" class="hp" title="order"></iframe>
+      <p id="orderDone" class="order-done" hidden>تم استلام طلبك! حنتواصل معاك على واتساب للتأكيد والتسليم. 🍯</p>
+      <p class="order-note">أو اطلب مباشرة عبر <a href="https://wa.me/249912179720" target="_blank" rel="noopener">واتساب</a> - الدفع عند التسليم حسب منطقتك.</p>
     </div>
   </section>
 
@@ -336,5 +381,42 @@ footer b{color:var(--gold)}
   </div>
 </footer>
 
+
+<script>
+(function(){
+  var API='https://script.google.com/macros/s/AKfycbwQR2WbRL_tXoRYC8gYxjoapOw1xPeVB0Lagnwk_rFcNfaoEMpV9jmFcnXAJjJzl6mg/exec';
+  window.gloryData=function(d){
+    if(!d||!d.ok)return;
+    var sel=document.getElementById('orderProduct');
+    if(sel&&d.products&&d.products.length){sel.innerHTML='';}
+    (d.products||[]).forEach(function(p){
+      var label=(p.name+' '+p.size).trim();
+      if(sel){var o=document.createElement('option');o.value=label;o.textContent=label;sel.appendChild(o);}
+      var priceEl=document.querySelector('.price[data-size="'+ (p.size.indexOf('250')>-1?'250':'1') +'"]');
+      if(priceEl){
+        var parts=[];
+        if(p.price!==''&&p.price!=null){parts.push('السعر: '+p.price);}
+        if(p.stock!==''&&p.stock!=null){parts.push(parseInt(p.stock,10)>0?('المتوفر: '+p.stock):'نفد المخزون حالياً');}
+        priceEl.textContent=parts.join(' · ');
+      }
+    });
+  };
+  var s=document.createElement('script');
+  s.src=API+'?action=products&callback=gloryData';
+  s.onerror=function(){};
+  document.body.appendChild(s);
+  var form=document.getElementById('orderForm');
+  if(form){
+    form.addEventListener('submit',function(e){
+      if(form.website&&form.website.value){e.preventDefault();return;}
+      if(!form.name.value.trim()||!form.phone.value.trim()){e.preventDefault();return;}
+      setTimeout(function(){
+        document.getElementById('orderDone').hidden=false;
+        form.reset();
+      },800);
+    });
+  }
+})();
+</script>
 </body>
 </html>
