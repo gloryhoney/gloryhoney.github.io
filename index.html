@@ -295,28 +295,9 @@ footer b{color:var(--gold)}
         <h2>اطلب من الموقع مباشرة</h2>
         <div class="divider"></div>
       </div>
-      <form id="orderForm" class="order-form" method="POST" action="https://script.google.com/macros/s/AKfycbwQR2WbRL_tXoRYC8gYxjoapOw1xPeVB0Lagnwk_rFcNfaoEMpV9jmFcnXAJjJzl6mg/exec?action=order" target="orderFrame">
-        <label>المنتج
-          <select name="product" id="orderProduct" required>
-            <option value="عسل قلوري هاني 250 جرام">عسل قلوري هاني - 250 جرام</option>
-            <option value="عسل قلوري هاني 1 كيلو جرام">عسل قلوري هاني - 1 كيلو جرام</option>
-          </select>
-        </label>
-        <label>الكمية
-          <input type="number" name="qty" min="1" value="1" required>
-        </label>
-        <label>الاسم
-          <input type="text" name="name" maxlength="100" required>
-        </label>
-        <label>رقم الهاتف (واتساب)
-          <input type="tel" name="phone" maxlength="20" required>
-        </label>
-        <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off">
-        <button type="submit" class="btn">أرسل الطلب</button>
-      </form>
-      <iframe name="orderFrame" class="hp" title="order"></iframe>
-      <p id="orderErr" class="order-err" hidden></p>
-      <p id="orderDone" class="order-done" hidden>تم استلام طلبك! حنتواصل معاك على واتساب للتأكيد والتسليم. 🍯</p>
+      <iframe src="https://script.google.com/macros/s/AKfycbwQR2WbRL_tXoRYC8gYxjoapOw1xPeVB0Lagnwk_rFcNfaoEMpV9jmFcnXAJjJzl6mg/exec?action=form"
+              title="نموذج الطلب" loading="lazy"
+              style="width:100%;max-width:560px;height:680px;border:0;display:block;margin:0 auto;background:transparent"></iframe>
       <p class="order-note">أو اطلب مباشرة عبر <a href="https://wa.me/249912179720" target="_blank" rel="noopener">واتساب</a> - الدفع عند التسليم حسب منطقتك.</p>
     </div>
   </section>
@@ -389,7 +370,7 @@ footer b{color:var(--gold)}
   var API='https://script.google.com/macros/s/AKfycbwQR2WbRL_tXoRYC8gYxjoapOw1xPeVB0Lagnwk_rFcNfaoEMpV9jmFcnXAJjJzl6mg/exec';
   window.gloryData=function(d){
     if(!d||!d.ok)return;
-    var sel=document.getElementById('orderProduct');
+    var sel=null;
     if(sel&&d.products&&d.products.length){sel.innerHTML='';}
     (d.products||[]).forEach(function(p){
       var label=(p.name+' '+p.size).trim();
@@ -407,38 +388,6 @@ footer b{color:var(--gold)}
   s.src=API+'?action=products&callback=gloryData';
   s.onerror=function(){};
   document.body.appendChild(s);
-  var form=document.getElementById('orderForm');
-  if(form){
-    var btn=form.querySelector('button[type=submit]');
-    var timer=null;
-    window.addEventListener('message',function(ev){
-      if(typeof ev.data!=='string'||ev.data.indexOf('glory-order')!==0)return;
-      clearTimeout(timer);
-      if(ev.data==='glory-order-ok'){
-        document.getElementById('orderDone').hidden=false;
-        document.getElementById('orderErr').hidden=true;
-        form.reset();
-      }else{
-        var e2=document.getElementById('orderErr');
-        e2.textContent=ev.data.indexOf('duplicate')>-1?'الطلب دا وصلنا بالفعل قبل شوي - ما تحتاج تعيدو.':'تعذر تسجيل الطلب - تأكد من البيانات وجرب تاني، أو اطلب عبر واتساب.';
-        e2.hidden=false;
-      }
-      btn.disabled=false;btn.textContent='أرسل الطلب';
-    });
-    form.addEventListener('submit',function(e){
-      if(form.website&&form.website.value){e.preventDefault();return;}
-      if(!form.name.value.trim()||!form.phone.value.trim()){e.preventDefault();return;}
-      btn.disabled=true;btn.textContent='جاري الإرسال...';
-      document.getElementById('orderDone').hidden=true;
-      document.getElementById('orderErr').hidden=true;
-      timer=setTimeout(function(){
-        btn.disabled=false;btn.textContent='أرسل الطلب';
-        var e2=document.getElementById('orderErr');
-        e2.textContent='ما تأكدنا من وصول الطلب - جرب تاني أو تواصل واتساب.';
-        e2.hidden=false;
-      },15000);
-    });
-  }
 })();
 </script>
 </body>
