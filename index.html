@@ -168,11 +168,6 @@ section{padding:56px 0}
 .card h3{font-size:20px;margin-bottom:6px}
 .card p{font-size:14.5px;color:var(--muted)}
 .card .btn{margin-top:20px;width:100%}
-.card .price{font-family:'Amiri',serif;font-size:26px;color:var(--gold);margin-top:10px}
-.badge-stock{display:inline-block;font-size:13px;font-weight:700;padding:4px 16px;border-radius:50px;margin-top:12px}
-.badge-in{background:rgba(46,204,113,.10);color:#8be0ab;border:1px solid rgba(46,204,113,.35)}
-.badge-out{background:rgba(231,76,60,.10);color:#f1948a;border:1px solid rgba(231,76,60,.4)}
-.card img.prod{width:100%;border-radius:14px;border:1px solid var(--line);margin-bottom:14px}
 
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px;counter-reset:step}
 .step{
@@ -260,23 +255,22 @@ footer b{color:var(--gold)}
         <h2>عبواتنا</h2>
         <div class="divider"></div>
       </div>
-      <div class="products" id="productGrid">
+      <div class="products">
         <article class="card">
           <div class="jar">🍯</div>
-          <h3>عسل قلوري هاني</h3>
+          <h3>عبوة صغيرة</h3>
           <div class="weight">250 جرام</div>
           <p>مثالية للتجربة والاستخدام اليومي - بنفس جودة العسل الأصلي وتغليف قلوري هاني الفاخر.</p>
-          <a class="btn btn-outline" href="https://wa.me/249912179720?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%B7%D9%84%D8%A8%20%D8%B9%D8%B3%D9%84%20%D9%82%D9%84%D9%88%D8%B1%D9%8A%20%D9%87%D8%A7%D9%86%D9%8A%20250%20%D8%AC%D8%B1%D8%A7%D9%85" target="_blank" rel="noopener">اطلب عبر واتساب</a>
+          <a class="btn btn-outline" href="https://wa.me/249912179720?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%B9%D8%B3%D9%84%20%D9%82%D9%84%D9%88%D8%B1%D9%8A%20%D9%87%D8%A7%D9%86%D9%8A" target="_blank" rel="noopener">اسأل عن السعر</a>
         </article>
         <article class="card">
           <div class="jar">🍯</div>
-          <h3>عسل قلوري هاني</h3>
+          <h3>عبوة عائلية</h3>
           <div class="weight">1 كيلو جرام</div>
           <p>العبوة الأكبر للبيت والمناسبات - عسل نحل أصلي بختم وتغليف يحمي الجودة لحد ما يوصلك.</p>
-          <a class="btn btn-outline" href="https://wa.me/249912179720?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%B7%D9%84%D8%A8%20%D8%B9%D8%B3%D9%84%20%D9%82%D9%84%D9%88%D8%B1%D9%8A%20%D9%87%D8%A7%D9%86%D9%8A%201%20%D9%83%D9%8A%D9%84%D9%88" target="_blank" rel="noopener">اطلب عبر واتساب</a>
+          <a class="btn btn-outline" href="https://wa.me/249912179720?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%B9%D8%B3%D9%84%20%D9%82%D9%84%D9%88%D8%B1%D9%8A%20%D9%87%D8%A7%D9%86%D9%8A" target="_blank" rel="noopener">اسأل عن السعر</a>
         </article>
       </div>
-      <p style="text-align:center;color:var(--muted);font-size:13.5px;margin-top:18px">الأسعار والمخزون بتتحدّث مباشرة من نظام إدارة قلوري</p>
     </div>
   </section>
 
@@ -342,38 +336,5 @@ footer b{color:var(--gold)}
   </div>
 </footer>
 
-<script>
-(function(){
-  var SHEET_URL='https://docs.google.com/spreadsheets/d/1c4fn5QlrlFFnmzLuOGjkBmgnOWC9JtooWbi9ZSAwARg/gviz/tq?tqx=out:json&headers=1&sheet='+encodeURIComponent('المنتجات');
-  var WA='249912179720';
-  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-  fetch(SHEET_URL).then(function(r){return r.text();}).then(function(t){
-    var m=t.match(/setResponse\(([\s\S]*)\);?\s*$/);
-    if(!m) return;
-    var data=JSON.parse(m[1]);
-    var cols=data.table.cols.map(function(c){return (c.label||'').trim();});
-    var idx={name:cols.indexOf('المنتج'),size:cols.indexOf('العبوة'),price:cols.indexOf('السعر'),stock:cols.indexOf('المخزون'),show:cols.indexOf('ظاهر بالموقع'),img:cols.indexOf('صورة')};
-    function cell(row,i){if(i<0||!row.c||!row.c[i]||row.c[i].v==null) return ''; return String(row.c[i].v);}
-    var rows=data.table.rows||[];
-    var html='';
-    rows.forEach(function(row){
-      var show=cell(row,idx.show).trim();
-      if(show!==''&&show!=='نعم') return;
-      var name=cell(row,idx.name),size=cell(row,idx.size),price=cell(row,idx.price),stock=cell(row,idx.stock).trim(),img=cell(row,idx.img).trim();
-      if(!name&&!size) return;
-      var full=(name+' '+size).trim();
-      var stockHtml='',btnText='اطلب عبر واتساب';
-      if(stock!==''&&stock!=='0'&&stock!=='نفد'&&!isNaN(Number(stock))) stockHtml='<span class="badge-stock badge-in">متوفر</span>';
-      else if(stock==='0'||stock==='نفد'){stockHtml='<span class="badge-stock badge-out">نفد المخزون</span>';btnText='اسأل عن التوفر';}
-      else if(stock!==''&&isNaN(Number(stock))) stockHtml='<span class="badge-stock badge-in">'+esc(stock)+'</span>';
-      var priceHtml=price!==''?'<div class="price">'+esc(price)+'</div>':'';
-      var imgHtml=img!==''?'<img class="prod" src="'+esc(img)+'" alt="'+esc(full)+'" loading="lazy">':'<div class="jar">🍯</div>';
-      var msg='السلام عليكم، أريد طلب '+full;
-      html+='<article class="card">'+imgHtml+'<h3>'+esc(name)+'</h3><div class="weight">'+esc(size)+'</div>'+priceHtml+stockHtml+'<a class="btn btn-outline" href="https://wa.me/'+WA+'?text='+encodeURIComponent(msg)+'" target="_blank" rel="noopener">'+btnText+'</a></article>';
-    });
-    if(html){document.getElementById('productGrid').innerHTML=html;}
-  }).catch(function(){/* keep static fallback */});
-})();
-</script>
 </body>
 </html>
