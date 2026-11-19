@@ -222,6 +222,7 @@ footer b{color:var(--gold)}
 .order-form .btn{justify-content:center}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
 .order-done{color:#8be0ab;text-align:center;font-weight:700;margin-top:14px}
+.order-err{color:#f0a0a0;text-align:center;font-weight:700;margin-top:14px}
 .order-note{text-align:center;margin-top:10px;opacity:.85}
 .order-note a{color:#e8c352}
 </style>
@@ -314,6 +315,7 @@ footer b{color:var(--gold)}
         <button type="submit" class="btn">أرسل الطلب</button>
       </form>
       <iframe name="orderFrame" class="hp" title="order"></iframe>
+      <p id="orderErr" class="order-err" hidden></p>
       <p id="orderDone" class="order-done" hidden>تم استلام طلبك! حنتواصل معاك على واتساب للتأكيد والتسليم. 🍯</p>
       <p class="order-note">أو اطلب مباشرة عبر <a href="https://wa.me/249912179720" target="_blank" rel="noopener">واتساب</a> - الدفع عند التسليم حسب منطقتك.</p>
     </div>
@@ -407,13 +409,34 @@ footer b{color:var(--gold)}
   document.body.appendChild(s);
   var form=document.getElementById('orderForm');
   if(form){
+    var btn=form.querySelector('button[type=submit]');
+    var timer=null;
+    window.addEventListener('message',function(ev){
+      if(typeof ev.data!=='string'||ev.data.indexOf('glory-order')!==0)return;
+      clearTimeout(timer);
+      if(ev.data==='glory-order-ok'){
+        document.getElementById('orderDone').hidden=false;
+        document.getElementById('orderErr').hidden=true;
+        form.reset();
+      }else{
+        var e2=document.getElementById('orderErr');
+        e2.textContent=ev.data.indexOf('duplicate')>-1?'الطلب دا وصلنا بالفعل قبل شوي - ما تحتاج تعيدو.':'تعذر تسجيل الطلب - تأكد من البيانات وجرب تاني، أو اطلب عبر واتساب.';
+        e2.hidden=false;
+      }
+      btn.disabled=false;btn.textContent='أرسل الطلب';
+    });
     form.addEventListener('submit',function(e){
       if(form.website&&form.website.value){e.preventDefault();return;}
       if(!form.name.value.trim()||!form.phone.value.trim()){e.preventDefault();return;}
-      setTimeout(function(){
-        document.getElementById('orderDone').hidden=false;
-        form.reset();
-      },800);
+      btn.disabled=true;btn.textContent='جاري الإرسال...';
+      document.getElementById('orderDone').hidden=true;
+      document.getElementById('orderErr').hidden=true;
+      timer=setTimeout(function(){
+        btn.disabled=false;btn.textContent='أرسل الطلب';
+        var e2=document.getElementById('orderErr');
+        e2.textContent='ما تأكدنا من وصول الطلب - جرب تاني أو تواصل واتساب.';
+        e2.hidden=false;
+      },15000);
     });
   }
 })();
